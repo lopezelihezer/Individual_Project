@@ -160,7 +160,8 @@ ___
 You will need your own kaggle account to download the data from the following link: https://www.kaggle.com/itssuru/super-store
 
 You will also need to do the following:
+- [x] Clone this Repo to a local directory
 - [x] Read this README.md
-- [x] Download the wrangle.py and superstore_logo.png files into your working directory
+- [x] Verify the wrangle.py and superstore_logo.png files are in your working directory
 - [x] Run the SuperStore_Individual_Project.ipynb notebook
 
