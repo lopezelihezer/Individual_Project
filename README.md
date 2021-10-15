@@ -4,15 +4,17 @@
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
-### Project Summary
-<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
-# Project Goals
+# Project Summary
+<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
+Using a SuperStore dataset acquired through Kaggle.com, I built an OLS regression model that beat the baseline model in predicting Profit. My initial hypothesis that each City’s profit was independent of Texas Mean Profit, could not be tested as the dataset of each City was relatively small. Instead I tested by Category, Sub-Category, and Segment, and found that overall SuperStore is losing money in Texas, with Office Supplies consisting of 61% of sales. A T-test suggested there is no difference between profit generated from office supplies and the Texas Mean Profit.
+
+## Project Goals
 > - Find drivers for Profit using SuperStore data available in Texas.
 > - Construct an ML Regression model that beats the baseline in predicting Profit.
 > - Determine weak areas
 
-# Executive Summary
+## Executive Summary
 > - Top Drivers were Category, Sub-Category, and Segment
 > - The OLS Regression model beat our baseline in predicting Profit with an RMSE of 85.98 compared to the baseline RMSE of 259.47.
 > - Overall Texas is losing money with Office Supplies consisting of 61% of sales. There is no difference between office supplies profit and Texas Mean Profit
