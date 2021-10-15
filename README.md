@@ -1,6 +1,6 @@
 ## SuperStore Individual Project
 
-<img src="superstore_logo.png" title="superstore_logo" width="400" height="200" />
+<img src="superstore_logo.png" title="superstore_logo" width="800" height="200" />
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
@@ -39,9 +39,8 @@
 |Feature|Datatype|Definition|
 |:-------|:--------|:----------|
 
- |  Ship Mode  | non-null   object | Mode of Shipping |
+ |  Ship Mode  |985 non-null   object | Mode of Shipping |
  |:-------|:--------|:----------|
- |   Ship Mode                |985 non-null    object   | Mode of shipping |
  |   Segment                  |985 non-null    object   | Segment that made the purchase |
  |   Country                  |985 non-null    object   | Country where purchase was made|
  |   City                     |985 non-null    object   | City where purchase was made |
@@ -157,8 +156,9 @@ ___
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
 You will need your own kaggle account to download the data from the following link: https://www.kaggle.com/itssuru/super-store
+
 You will also need to do the following:
 - [x] Read this README.md
-- [x] Download the wrangle.py file into your working directory
+- [x] Download the wrangle.py and superstore_logo.png files into your working directory
 - [x] Run the SuperStore_Individual_Project.ipynb notebook
 
