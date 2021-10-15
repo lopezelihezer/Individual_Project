@@ -1,91 +1,101 @@
-## Zillow Classification Project
+## SuperStore Individual Project
 
-<img src="zillow_logo.png" title="zillow_logo" width="500" height="200" />
+<img src="superstore_logo.png" title="superstore_logo" width="400" height="200" />
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
 ### Project Summary
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
-#### Project Objectives
-> - Document code, process (data acquistion, preparation, exploratory data analysis and statistical testing, modeling, and model evaluation), findings, and key takeaways in a Jupyter Notebook report.
-> - Create modules (wrangle_zillow.py) that make your process repeateable.
-> - Construct an ML Regression model to predict tax value using regression techniques.
-> - Deliver a 5 minute presentation consisting of slides on canva to the dedicated Zillow Data Science Team.
-> - Answer panel questions about your code, process, findings and key takeaways, and model.
+# Project Goals
+> - Find drivers for Profit using SuperStore data available in Texas.
+> - Construct an ML Regression model that beats the baseline in predicting Profit.
+> - Determine weak areas
 
-#### Business Goals
-> - Find drivers that affect tax value using the Zillow data set. 
-> - Construct an ML Regression model that predicts tax value.
-> - Document your process well enough to be presented or read like a report.
+# Executive Summary
+> - Top Drivers were Category, Sub-Category, and Segment
+> - The OLS Regression model beat our baseline in predicting Profit with an RMSE of 85.98 compared to the baseline RMSE of 259.47.
+> - Overall Texas is losing money with Office Supplies consisting of 61% of sales. There is no difference between office supplies profit and Texas Mean Profit
 
 #### Audience
-> - Zillow Data Science Team
+> - SuperStore Data Science Team
 
 #### Project Deliverables
 > - A final report jupyter notebook 
-> - A final report slide presentation
 > - All necessary modules to make my project reproducible
 > - Github repository containing all my work
+> - README file
 
 #### Project Context
-> - The zillow dataset I'm using came from the Codeup database.
+> - The SuperStore dataset I am using can be downloaded from https://www.kaggle.com/itssuru/super-store by signing in with a Kaggle account.
 
 
 #### Data Dictionary
 
 |Target|Datatype|Definition|
 |:-------|:--------|:----------|
-| taxvalue | float64 | Value assessed to a home for tax purposes |
+| Profit | float64 | Profit made through purchase of item(s) |
 
 |Feature|Datatype|Definition|
 |:-------|:--------|:----------|
 
- |  yearbuilt  | non-null   float64 | The year the property was built. |
+ |  Ship Mode  | non-null   object | Mode of Shipping |
  |:-------|:--------|:----------|
- |  taxamount  | non-null   float64 | The amount of tax paid on the property |
- |  fips       | non-null   float64 | Federal Information Processing Standard (county code)|
- |  area       | non-null   float64 | Calculated square feet of property|
- |  bed        | non-null   float64 | Number of bedrooms|
- |  bath       | non-null   float64 | Number of bathrooms|
- |  tdate_month| non-null   int64   | Transaction date month|
- |  tdate_day  | non-null   int64   | Transaction date day|
- |  tdate_week | non-null   int64   | Transaction date week|
- |  county     | non-null   object  | The county corresponding to the fips id|
- |  taxrate    | non-null   float64 | Calculated rate by dividing taxamount by taxvalue|
+ |   Ship Mode                |985 non-null    object   | Mode of shipping |
+ |   Segment                  |985 non-null    object   | Segment that made the purchase |
+ |   Country                  |985 non-null    object   | Country where purchase was made|
+ |   City                     |985 non-null    object   | City where purchase was made |
+ |   State                    |985 non-null    object   | State where purchase was made |
+ |   Postal Code              |985 non-null    int64    | Postal code where purchase was made |
+ |   Region                   |985 non-null    object   | Region where purchase was made |
+ |   Category                 |985 non-null    object   | Technology, Office Suplies, or Furnishings |
+ |   Sub-Category             |985 non-null    object   | Items withing each Category |
+ |   Sales                    |985 non-null    float64  | Cost * Quantity |
+ |  Quantity                  |985 non-null    int64    | Number of Items sold |
+ |  Discount                  |985 non-null    float64  | Percentage of cost removed |
+ |  Profit                    |985 non-null    float64  | Money made by SuperStore from purchase |
+ |  Category_Office Supplies  |985 non-null    uint8    | Whether an item falls within Office Supplies Category |
+ |  Category_Technology       |985 non-null    uint8    | Whether an item falls within Technology Category | 
+ |  Sub-Category_Accessories  |985 non-null    uint8    | Whether an item falls within Accessories Sub-Category |
+ |  Sub-Category_Appliances   |985 non-null    uint8    | Whether an item falls within Appliances Sub-Category |
+ |  Sub-Category_Art          |985 non-null    uint8    | Whether an item falls within Art Sub-Category |
+ |  Sub-Category_Binders      |985 non-null    uint8    | Whether an item falls within Binders Sub-Category |
+ |  Sub-Category_Bookcases    |985 non-null    uint8    | Whether an item falls within Bookcases Sub-Category |
+ |  Sub-Category_Chairs       |985 non-null    uint8    | Whether an item falls within Chairs Sub-Category |
+ |  Sub-Category_Copiers      |985 non-null    uint8    | Whether an item falls within Copiers Sub-Category |
+ |  Sub-Category_Envelopes    |985 non-null    uint8    | Whether an item falls within Envelopes Sub-Category |
+ |  Sub-Category_Fasteners    |985 non-null    uint8    | Whether an item falls within Fasteners Sub-Category |
+ |  Sub-Category_Furnishings  |985 non-null    uint8    | Whether an item falls within Furnishings Sub-Category |
+ |  Sub-Category_Labels       |985 non-null    uint8    | Whether an item falls within Labels Sub-Category |
+ |  Sub-Category_Machines     |985 non-null    uint8    | Whether an item falls within Machines Sub-Category |
+ |  Sub-Category_Paper        |985 non-null    uint8    | Whether an item falls within Paper Sub-Category |
+ |  Sub-Category_Phones       |985 non-null    uint8    | Whether an item falls within Phones Sub-Category |
+ |  Sub-Category_Storage      |985 non-null    uint8    | Whether an item falls within Storage Sub-Category |
+ |  Sub-Category_Supplies     |985 non-null    uint8    | Whether an item falls within Supplies Sub-Category |
+ |  Sub-Category_Tables       |985 non-null    uint8    | Whether an item falls within Tables Sub-Category |
+ |  Segment_Consumer          |985 non-null    uint8    | Whether a buyer is from the Consumer segment |
+ |  Segment_Corporate         |985 non-null    uint8    | Whether a buyer is from the Corporate segment |
+ |  Segment_Home Office       |985 non-null    uint8    | Whether a buyer is from the Home Office segment |
  
 
 
 
-#### Initial Hypotheses
+#### Initial Hypotheses & Outcomes
 
-> - **Hypothesis 1 -**
+> - **Hypothesis 1 -** Tech Cat Profit vs Texas Mean Profit
 > - alpha = .05
-> - $H_0$: There is no linear correlation between bedroom count and taxvalue.  
-> - $H_a$: There is a linear correlation between bedroom count and taxvalue. 
-> - Outcome: I rejected the Null Hypothesis; Therefore we reject that there is no linear correlation between bedroom count and taxvalue.
+> - $H_0$: There is no difference between Tehnology Category Profit and Texas Mean Profit.  
+> - $H_a$: There is a difference between Technology Category Profit and Texas Mean Profit. 
+> - Outcome: I rejected the Null Hypothesis; Therefore we reject that there is no difference between Technology Category Profit and Texas Mean Profit.
 
-> - **Hypothesis 2 -**
+> - **Hypothesis 2 -** Office Cat Profit vs Texas Mean Profit
 > - alpha = .05
-> - $H_0$: There is no linear correlation between bathroom count and taxvalue.  
-> - $H_a$: There is a linear correlation between bathroom count and taxvalue. 
-> - Outcome: I rejected the Null Hypothesis; Therefore we reject that there is no linear correlation between bathroom count and taxvalue.
+> - $H_0$: There is no difference between "Office Supplies" Category Profit and Texas Mean Profit.  
+> - $H_a$: There is a difference between "Office Supplies" Category Profit and Texas Mean Profit. 
+> - Outcome: I fail to reject the Null Hypothesis; Therefore we fail to reject that there is no difference between "Office Supplies" Category Profit and Texas Mean Profit.
 
-> - **Hypothesis 3 -**
-> - alpha = .05
-> - $H_0$: There is no linear correlation between area and taxvalue.  
-> - $H_a$: There is a linear correlation between area and taxvalue. 
-> - Outcome: I rejected the Null Hypothesis; Therefore we reject that there is no linear correlation between area and taxvalue.
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
-
-### Executive Summary
-<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
-
-> - Bedroom count, bathroom count, and area(sqft) all have a linear correlation with taxvalue
-> - Both taxvalue and taxamount have normal distributions
-> - Our best model (Quadratic Polynomial) beat our baseline (mean) RMSE value by 12,259.
-> - Single Unit Properties assessed from May-Aug 2017 found in the Zillow dataset were located in the following counties: Orange, Ventura, Los Angeles. All in the state of California.
 
 
 ### Pipeline Stages Breakdown
@@ -93,44 +103,41 @@
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
 ##### Plan
-- [x] Create README.md with data dictionary, project and business goals, come up with initial hypotheses.
-- [x] Acquire data from the Codeup Database and create a function to automate this process. Save the function in a wrangle_zillow.py file to import into the Zillow_Regression_Project.
-- [x] Clean and prepare data for the first iteration through the pipeline, MVP preparation. Create a function to automate the process, store the function in a wrangle_zillow.py module, and prepare data in Zillow_Regression_Project by importing and using the function.
-- [x]  Clearly define three hypotheses, set an alpha, run the statistical tests needed, reject or fail to reject the Null Hypothesis, and document findings and takeaways.
-- [x] Establish a baseline mean and document well.
-- [x] Train three different regression models.
+- [x] Create README.md with data dictionary, project and business goals, come up with initial questions.
+- [x] Acquire data from the Kaggle Database.
+- [x] Clean and prepare data for the first iteration through the pipeline, MVP preparation. Create a function to automate the process, store the function in a wrangle.py module, and prepare data by importing and using the function.
+- [x]  Clearly define hypotheses, set an alpha, run the statistical tests needed, reject or fail to reject the Null Hypothesis, and document findings and takeaways.
+- [x] Establish a baseline and document well.
+- [x] Train at least three different regression models.
 - [x] Evaluate models on train and validate datasets.
 - [x] Choose the model that performs the best and evaluate that single model on the test dataset.
-- [x] Document conclusions, takeaways, and next steps in the Zillow_Regression_Project.
+- [x] Document conclusions, takeaways, and next steps. 
 
 ___
 
 ##### Plan -> Acquire
-> - Store functions that are needed to acquire data from the measures and species tables from the zillow database on the Codeup data science database server; make sure the wrangle_zillow.py module contains the necessary imports to run my code.
-> - Import the acquire function from the wrangle_zillow.py module and use it to acquire the data in the Zillow_Regression_Project.
-> - Complete some initial data summarization (`.info()`, `.describe()`, `.value_counts()`, ...).
+> - Acquire data from Kaggle Database by signing in. 
 > - Plot distributions of individual variables.
 ___
 
 ##### Plan -> Acquire -> Prepare
-> - Store functions needed to prepare the zillow data; make sure the module contains the necessary imports to run the code. The final function should do the following:
+> - Store functions needed to prepare the SuperStore data; make sure the module contains the necessary imports to run the code. The final function should do the following:
     - Split the data into train/validate/test.
     - Handle any missing values.
-    - Handle erroneous data and/or outliers that need addressing.
+    - Handle erroneous data
     - Encode variables as needed.
     - Create any new features, if made for this project.
-> - Import the prepare function from the wrangle_zillow.py module and use it to prepare the data in the Zillow_Regression_Project.
 ___
 
 ##### Plan -> Acquire -> Prepare -> Explore
-> - Answer key questions, my hypotheses, and figure out the features that can be used in a regression model to best predict the target variable, taxvalue. 
+> - Answer key questions, my hypotheses, and figure out the features that can be used in a regression model to best predict the target variable, Profit. 
 > - Run at least 2 statistical tests in data exploration. Document my hypotheses, set an alpha before running the tests, and document the findings well.
-> - Create visualizations and run statistical tests that work toward discovering variable relationships. The goal is to identify features that are related to taxvalue (the target), identify any data integrity issues, and understand 'how the data works'. If there appears to be some sort of interaction or correlation, assume there is no causal relationship and brainstorm (and document) ideas on reasons there could be correlation.
+> - Create visualizations and run statistical tests that work toward discovering variable relationships. The goal is to identify features that are related to Profit (the target), identify any data integrity issues, and understand 'how the data works'. If there appears to be some sort of interaction or correlation, assume there is no causal relationship and brainstorm (and document) ideas on reasons there could be correlation.
 > - Summarize my conclusions, provide clear answers to my specific questions, and summarize any takeaways/action plan from the work above.
 ___
 
 ##### Plan -> Acquire -> Prepare -> Explore -> Model
-> - Establish a baseline mean to determine if having a model is better than no model and train and compare at least 3 different models. Document these steps well.
+> - Establish a baseline to determine if having a model is better than no model and train and compare at least 3 different models. Document these steps well.
 > - Train (fit, transform, evaluate) multiple models, varying the algorithm and/or hyperparameters you use.
 > - Compare evaluation metrics across all the models you train and select the ones you want to evaluate using your validate dataframe.
 > - Feature Selection (after initial iteration through pipeline): Are there any variables that seem to provide limited to no additional information? If so, remove them.
@@ -139,10 +146,9 @@ ___
 ___
 
 ##### Plan -> Acquire -> Prepare -> Explore -> Model -> Deliver
-> - Introduce myself and my project goals at the very beginning of my slide presentation.
-> - Summarize my findings at the beginning like I would for an Executive Summary.
-> - Walk Zillow Data Science Team through the analysis I did to answer my questions and that lead to my findings.
-> - Clearly call out the questions and answers I am analyzing as well as offer insights and recommendations based on my findings.
+> - Summarize my findings through an Executive Summary.
+> - Provide a neat and clear final notebook
+> - Provide a README.md file
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
@@ -150,8 +156,9 @@ ___
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
-You will need your own env file with database credentials along with all the necessary files listed below to run my final project notebook. 
+You will need your own kaggle account to download the data from the following link: https://www.kaggle.com/itssuru/super-store
+You will also need to do the following:
 - [x] Read this README.md
-- [x] Download the wrangle_zillow.py file into your working directory
-- [x] Add your own env file to your directory. (user, password, host)
-- [x] Run the Zillow_Regression_Project.ipynb notebook
+- [x] Download the wrangle.py file into your working directory
+- [x] Run the SuperStore_Individual_Project.ipynb notebook
+
